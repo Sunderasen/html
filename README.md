@@ -1,2 +1,4 @@
-# Html for using with ec2 ci/cd and testing purpose
-For testing
+# Html 
+This repo is used to pull the changes to the ec2 to learning purpose.
+
+
