@@ -4,7 +4,7 @@ name: Push-to-EC2
 on:
   push:
     branches:
-      - main
+      - Stagging
 
 jobs:
   deploy:
@@ -19,7 +19,7 @@ jobs:
         uses: easingthemes/ssh-deploy@main
         env:
           SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
-          REMOTE_HOST: ${{ secrets.HOST_DNS }}
+          REMOTE_HOST: ${{ secrets.HOST_DNS_STAGGING }}
           REMOTE_USER: ${{ secrets.USERNAME }}
           TARGET: ${{ secrets.TARGET_DIR }}
 
@@ -36,4 +36,3 @@ jobs:
             sudo systemctl enable apache2
             cd home
             sudo mv * /var/www/html
-    
