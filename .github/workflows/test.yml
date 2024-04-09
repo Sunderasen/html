@@ -17,6 +17,9 @@ jobs:
       - name: Install rsync
         run: sudo apt-get update && sudo apt-get install -y rsync
 
+      - name: Create SSH directory
+        run: mkdir -p ~/.ssh
+
       - name: Write SSH key to file
         run: echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa && chmod 400 ~/.ssh/id_rsa
 
