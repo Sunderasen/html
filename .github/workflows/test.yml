@@ -13,20 +13,12 @@ jobs:
     steps:
       - name: Checkout the code
         uses: actions/checkout@v2
-        
-      - name: Debug EC2_SSH_KEY
-        run: echo "${{ secrets.EC2_SSH_KEY }}"
 
-      - name: Create SSH directory
-        run: mkdir -p ~/.ssh
-
-      - name: Set up SSH key
-        run: |
-          echo "${{ secrets.EC2_SSH_KEY }}" | base64 --decode > ~/.ssh/id_rsa
-          chmod 400 ~/.ssh/id_rsa
-          
       - name: Install rsync
         run: sudo apt-get update && sudo apt-get install -y rsync
+
+      - name: Write SSH key to file
+        run: echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa && chmod 400 ~/.ssh/id_rsa
 
       - name: Deploy files to EC2
         run: |
