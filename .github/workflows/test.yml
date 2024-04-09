@@ -27,4 +27,4 @@ jobs:
 
       - name: Deploy files to EC2
         run: |
-          rsync -e "ssh -i ~/.ssh/id_rsa" -r --delete-after --quiet $GITHUB_WORKSPACE/ ${{ secrets.USERNAME }}@${{ secrets.HOST_DNS }}:/var/www/html/
+          rsync -e "ssh -i ~/.ssh/id_rsa" -r --delete-after --quiet $GITHUB_WORKSPACE/ ${{ secrets.USERNAME }}@${{ secrets.HOST_DNS }}:/home/ubuntu/test
