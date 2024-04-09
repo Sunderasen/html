@@ -1,0 +1,19 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy to EC2
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+
+      - name: Deploy files to EC2
+        run: |
+          rsync -e "ssh -i ${{ secrets.EC2_SSH_KEY }}" -r --delete-after --quiet $GITHUB_WORKSPACE/ ${{ secrets.USERNAME }}@${{ secrets.HOST_DNS }}:/var/www/html/
